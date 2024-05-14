@@ -7,23 +7,12 @@ from .models import Driver, Car, Manufacturer
 @admin.register(Driver)
 class DriverAdmin(UserAdmin):
     fieldsets = UserAdmin.fieldsets + (
-        (None, {'fields': ('license_number',)}),
+        ("INFO", {"fields": ("license_number",)}),
     )
-    list_display = UserAdmin.list_display + ('license_number',)
-    list_filter = UserAdmin.list_filter + ('license_number',)
-    search_fields = UserAdmin.search_fields + ('license_number',)
-    add_fieldsets = (
-        (
-            None,
-            {
-                "classes": ("wide",),
-                "fields": ("username", "password1", "password2"),
-            },
-        ),
-        ("Personal info", {"fields": ("first_name", "last_name", "email")}),
-        ("Additional info", {"fields": ("license_number",)}),
-    )
-
+    list_display = UserAdmin.list_display + ("license_number",)
+    list_filter = UserAdmin.list_filter + ("license_number",)
+    search_fields = UserAdmin.search_fields + ("license_number",)
+    add_fieldsets = UserAdmin.add_fieldsets + (("Additional info", {"fields": ("license_number",)}),)
 
 
 @admin.register(Car)
